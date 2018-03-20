@@ -46,10 +46,10 @@ router.route('/singers')     // create a singer (accessed at POST http://localho
         const oneSinger = new SingerTemplate()
         parseString(req.body.xml, (err, result) => { oneSinger.name = result.SingerProfile.name[0] } )
 
-        oneSinger.save( (err) => {   
-            if (err) { res.send(err) }
-            res.json({ message: 'Singer Record Created...' })
-        })
+        // oneSinger.save( (err) => {   
+        //     if (err) { res.send(err) }
+        //     res.json({ message: 'Singer Record Created...' })
+        // })
     })
 
 
