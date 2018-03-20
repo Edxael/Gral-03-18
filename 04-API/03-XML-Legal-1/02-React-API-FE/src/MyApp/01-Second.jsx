@@ -1,14 +1,34 @@
 import React from 'react'
 import axios from 'axios'
-import xml2js from 'xml2js'
+// import xml2js from 'xml2js'
 import './styles/00-main.css'
+
+import LocalXML from './xml-data/answer.xml'
+const parseString = require('xml2js').parseString;
+const xml2js = require('xml2js')
 
 
 
 export default class extends React.Component{
-    state = { name: '', findone: '', updateid: '', updatename: '', deleteid: '' }
+    state = { name: '', findone: '', updateid: '', updatename: '', deleteid: '', ob1: '' }
 
     render(){
+
+    // --------------------------------------------------------------------------------
+        const getLocalXML = () => {
+            console.log("Get Localy Hosted XML")
+
+            // code: https://github.com/Edxael/Gral-02-18/blob/master/02-React/19-longxml/src/MyApp/00-Main.jsx
+
+            fetch(LocalXML)
+                .then((res) => { return res.text() })
+                .then((res) => { return parseString(res, (err, result) => { this.setState({ ob1: result }) }) })
+
+            setTimeout(() => { 
+                console.log( this.state.ob1 )
+                this.setState({ ob1: '' })
+             }, 500)
+        }
 
     // --------------------------------------------------------------------------------
         const getAll = () => {
@@ -90,6 +110,15 @@ export default class extends React.Component{
             <div>
                 <h1>XML - Long - API - 1.4</h1>
                 <hr/>
+
+
+                <div className="secWrap">
+                    <h4>GET LOCAL XML</h4>
+                    <button onClick={ getLocalXML }>GET Local XML</button>
+                    <br/><br/>
+                </div>
+
+                <br/>
 
 
                 <div className="secWrap">

@@ -1,0 +1,212 @@
+<legalEnvelope extension="Tybera 1.1" version="1.1">
+  <messageIdentification>FI110</messageIdentification>
+  <to>
+    <addressee>
+      <entity type="InBox">
+        <organizationID codeValue="UTAOC">
+          <entityName id="ToAddrName1">Utah State Courts</entityName>
+          <name>
+            <entity type="Organization">
+              <organizationID>
+                <entityName id="ToOrgName1">Utah State Courts</entityName>
+              </organizationID>
+            </entity>
+          </name>
+        </organizationID>
+      </entity>
+      <uri>http://65.100.237.197/runit</uri>
+    </addressee>
+  </to>
+  <from>
+    <sender>
+      <personName>
+        <firstName>Test</firstName>
+        <lastName>Test</lastName>
+        <fullName>Test Test</fullName>
+        <designation>
+          <barMembershipInformation>
+            <barNumber>909090</barNumber>
+            <licenseAuthority>UT</licenseAuthority>
+          </barMembershipInformation>
+        </designation>
+      </personName>
+      <entity type="Organization">
+        <organizationID codeValue="UTBAR">
+          <entityName>UTBar Test Account</entityName>
+        </organizationID>
+      </entity>
+      <ipAddress>65.100.236.254</ipAddress>
+      <postalAddress>
+        <addressLine>360 West 920 North</addressLine>
+        <addressLine>Suite 100</addressLine>
+        <city>Orem</city>
+        <state>UT</state>
+        <postalCode>84057</postalCode>
+        <country>US</country>
+      </postalAddress>
+      <email>kward@tybera.com</email>
+      <uri userId="100">http://www.coltera.net/receiver/runit</uri>
+    </sender>
+  </from>
+  <creation>
+    <dateTime>
+      <date>2008-09-16</date>
+      <time>00:18:56:955-06:00</time>
+    </dateTime>
+  </creation>
+  <authentication><ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+  <ds:SignedInfo>
+  <ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+  <ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+  <ds:Reference URI="">
+  <ds:Transforms>
+  <ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+  <ds:Transform Algorithm="http://www.w3.org/2002/06/xmldsig-filter2">
+  <dsig-xpath:XPath xmlns:dsig-xpath="http://www.w3.org/2002/06/xmldsig-filter2" Filter="subtract">/legalEnvelope/legal/courtFiling/filing/filingInformation/paymentInformation</dsig-xpath:XPath>
+  </ds:Transform>
+  <ds:Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments"/>
+  </ds:Transforms>
+  <ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+  <ds:DigestValue>2jmj7l5rSw0yVb/vlWAYkK/YBwk=</ds:DigestValue>
+  </ds:Reference>
+  </ds:SignedInfo>
+  <ds:SignatureValue>
+  gRJejcD+SigIAFn6NTk/zEIc3LqtU5iPKhQi1Onu3g4PYbKi+P/MYJnv/p/1j2Bnp5NMPdrULC3Aw+t68VIZ9XyYQ1XM3mPEBZ6C0UIRGFRFc9kEbiEpQ8v/0oZL3iD02UFeMFVbnsKgzm+XM0Gj4UVVWWd10OoVqlrfkfothII=
+  </ds:SignatureValue>
+  <ds:KeyInfo>
+  <ds:X509Data>
+  <ds:X509Certificate>
+  MIICdDCCAd0CBEjL3kQwDQYJKoZIhvcNAQEEBQAwgYAxCzAJBgNVBAYTAlVTMQ0wCwYDVQQIEwRVVEFIMRcwFQYDVQQHEw5TYWx0IExha2UgQ2l0eTEdMBsGA1UEChMUVXRhaCBCYXIgQXNzb2NpYXRpb24xEDAOBgNVBAsTB3Rlc3RpbmcxGDAWBgNVBAMTDzE5Mi4xNjguMjQ3LjI1NDAeFw0wODA5MTMxNTM3NDBaFw0xODA4MjIxNTM3NDBaMIGAMQswCQYDVQQGEwJVUzENMAsGA1UECBMEVVRBSDEXMBUGA1UEBxMOU2FsdCBMYWtlIENpdHkxHTAbBgNVBAoTFFV0YWggQmFyIEFzc29jaWF0aW9uMRAwDgYDVQQLEwd0ZXN0aW5nMRgwFgYDVQQDEw8xOTIuMTY4LjI0Ny4yNTQwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAJv+KK1iYUwqmgntvzv6UUTmCdhTSCECjuZiFMjhhkORhFIz11QA+Cdy0K3IQJ9UsjG6tP41Z6McaHFwTHED2eu+RyHpm9nA6QooAyRo0YDYcH8yI0StL7CkqB9vMQCBmmZjiCZ2/XRg8ZaBF5P5bcwS0eolV9vSbbuARtCPwmETAgMBAAEwDQYJKoZIhvcNAQEEBQADgYEAmtlTi7m6Le3TAncXPgyIumWE0A6kYB3l2SQtjZMvbxyXgpHojEwVgNiIValiYxx9BmQGEmPWQE9uW7UoWyA9tkZg5WkMyxS3aIZ2dO8Z7gKPt5K4nF88SHLGiEhBg3Sa46hfQSAqFFGCP58+0Uj3VFO3FSZhDfUolS4irspoMrE=
+  </ds:X509Certificate>
+  </ds:X509Data>
+  <ds:KeyValue>
+  <ds:RSAKeyValue>
+  <ds:Modulus>
+  m/4orWJhTCqaCe2/O/pRROYJ2FNIIQKO5mIUyOGGQ5GEUjPXVAD4J3LQrchAn1SyMbq0/jVnoxxocXBMcQPZ675HIemb2cDpCigDJGjRgNhwfzIjRK0vsKSoH28xAIGaZmOIJnb9dGDxloEXk/ltzBLR6iVX29Jtu4BG0I/CYRM=
+  </ds:Modulus>
+  <ds:Exponent>AQAB</ds:Exponent>
+  </ds:RSAKeyValue>
+  </ds:KeyValue>
+  </ds:KeyInfo>
+  </ds:Signature></authentication>
+  <legal>
+    <courtFiling>
+      <filing>
+        <actor id="Atty_1_PL_1">
+          <title>ATY</title>
+          <name id="Atty_1_PL_1.n1">
+            <personName>
+              <lastName>TEST</lastName>
+            </personName>
+          </name>
+          <designation>
+            <barMembershipInformation>
+              <barNumber>909090</barNumber>
+              <licenseAuthority>UT</licenseAuthority>
+            </barMembershipInformation>
+          </designation>
+          <role>
+            <roleName>ATY</roleName>
+            <roleWith actorID="PL_1"/>
+            <sequence>0001</sequence>
+          </role>
+          <role>
+            <roleName>filer</roleName>
+          </role>
+        </actor>
+        <actor id="PL_1">
+          <title>Plaintiff</title>
+          <name id="PL_1.n1">
+            <personName>
+              <firstName>PAYME</firstName>
+              <lastName>PETE</lastName>
+            </personName>
+          </name>
+          <role>
+            <roleName>PLA</roleName>
+            <roleWith actorID="Atty_1_PL_1"/>
+            <sequence>0001</sequence>
+          </role>
+        </actor>
+        <actor id="DF_1">
+          <title>Defendant</title>
+          <name id="DF_1.n1">
+            <personName>
+              <firstName>BROKE</firstName>
+              <lastName>BOB</lastName>
+            </personName>
+          </name>
+          <role>
+            <roleName>DEF</roleName>
+            <sequence>0001</sequence>
+          </role>
+        </actor>
+        <filingInformation id="FI110">
+          <filingType codeValue="DC">Debt Collection</filingType>
+          <paymentInformation>
+            <credit>
+              <amount>0.0</amount>
+              <accountNumber contentTransform="digitalCertificate:base64" encryptionRefId="WrapKey.1">UAZ3MLph6RDZlnDWF+JLW+znBhyK/s71KnsbBzMHxIPpLjzun5W8iXcD/U6Zu5/TzYI34VKl5Oh6XwkmPMBg0Dym6blbrtMlqD/24emkI2phiIPu9Jb30U/0+K4XUmu57h011wUswgvNUfvGOMhwzk5VyvcXP3alUQmJ9GbtGE0=</accountNumber>
+              <expiration>
+                <date>2009-04</date>
+              </expiration>
+              <cardHolder>
+                <personName>
+                  <fullName>bogus</fullName>
+                </personName>
+              </cardHolder>
+            </credit>
+          </paymentInformation>
+          <courtInformation>
+            <physicalLocation>
+              <locationText>DTEST</locationText>
+            </physicalLocation>
+            <courtType codeValue="D">District</courtType>
+            <courtName codeValue="UTAOC">Utah State Courts</courtName>
+          </courtInformation>
+          <caseInformation juryDemand="false" newCase="true">
+            <caseTitle>Case110</caseTitle>
+            <totalAmount>4214</totalAmount>
+          </caseInformation>
+          <memo/>
+        </filingInformation>
+        <leadDocument id="Doc_119">
+          <documentInformation>
+            <actor id="Ref01.DOC_119.Filer" reference="Atty_1_PL_1"/>
+            <submitted>
+              <dateTime>
+                <date>2008-09-16</date>
+                <time>00:18:52:705-06:00</time>
+              </dateTime>
+            </submitted>
+            <documentDescription>
+              <documentTitle>Form</documentTitle>
+              <documentFileName>form.xml</documentFileName>
+              <documentType>F</documentType>
+            </documentDescription>
+          </documentInformation>
+          <documentContent contentEncoding="base64" id="DocumentContent1" mimeType="text/xml">PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxGb3JtPjxGYW1pbHlObV9QTF8xPlBFVEU8L0ZhbWlseU5tX1BMXzE+PEZhbWlseU5tX0F0dHlfMV9QTF8xPlRFU1Q8L0ZhbWlseU5tX0F0dHlfMV9QTF8xPjxCYXJOb19BdHR5XzFfUExfMT45MDkwOTA8L0Jhck5vX0F0dHlfMV9QTF8xPjxCYXJTdF9BdHR5XzFfUExfMT5VVDwvQmFyU3RfQXR0eV8xX1BMXzE+PEdpdmVuTm1fUExfMT5QQVlNRTwvR2l2ZW5ObV9QTF8xPjxSb2xlX1BMXzE+UExBPC9Sb2xlX1BMXzE+PEdpdmVuTm1fREZfMT5CUk9LRTwvR2l2ZW5ObV9ERl8xPjxSb2xlX0RGXzE+REVGPC9Sb2xlX0RGXzE+PEZhbWlseU5tX0RGXzE+Qk9CPC9GYW1pbHlObV9ERl8xPjxDb3VydExvY2F0aW9uPkRURVNUPC9Db3VydExvY2F0aW9uPjxUb3RhbENsYWltPjQyMTQ8L1RvdGFsQ2xhaW0+PC9Gb3JtPg0K</documentContent>
+          <attachment id="Doc_120">
+            <attachmentDocumentInformation>
+              <actor id="Ref01.DOC_120.Filer" reference="Atty_1_PL_1"/>
+              <submitted>
+                <dateTime>
+                  <date>2008-09-16</date>
+                  <time>00:18:52:705-06:00</time>
+                </dateTime>
+              </submitted>
+              <documentDescription>
+                <documentTitle>Complaint</documentTitle>
+                <documentFileName>test.txt</documentFileName>
+                <documentType>M</documentType>
+                <documentType>Complaint</documentType>
+                <sequence>0001</sequence>
+              </documentDescription>
+            </attachmentDocumentInformation>
+            <documentContent contentEncoding="base64" id="DocumentContent2" mimeType="text/plain">VGVzdA==</documentContent>
+          </attachment>
+        </leadDocument>
+      </filing>
+    </courtFiling>
+  </legal>
+</legalEnvelope>
