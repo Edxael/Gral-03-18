@@ -16,7 +16,7 @@ export default class extends React.Component{
 
     // --------------------------------------------------------------------------------
         const getLocalXML = () => {
-            console.log("Get Localy Hosted XML")
+            console.log("Get Localy Hosted XML.")
 
             // code: https://github.com/Edxael/Gral-02-18/blob/master/02-React/19-longxml/src/MyApp/00-Main.jsx
 
@@ -57,23 +57,35 @@ export default class extends React.Component{
         const post1 = () => {
             console.log("----------------------------------- \n  POST a new Record: \n ")
 
-            let tempObj = {
-                SingerProfile: {
-                    name: this.state.name
-                }
-            }
+            fetch(LocalXML)
+                .then((res) => { return res.text() })
+                .then((res) => { return parseString(res, (err, result) => { this.setState({ ob1: result }) }) })
 
-            let myBuilder = new xml2js.Builder()
-            let myXML = myBuilder.buildObject(tempObj)
-            console.log("XML sended to the server:")
-            console.log(myXML)
-            console.log(typeof myXML)
+                setTimeout(() => { 
+                    console.log( this.state.ob1 )
+                    
 
-            axios.post('http://localhost:5000/api/singers', { xml: myXML } )
-                .then( (response) => { console.log(" \n Response from the Server: ", response) })
-                .catch( (error) => { console.log(error) })
+                    // let tempObj = {
+                    //     SingerProfile: {
+                    //         name: this.state.name
+                    //     }
+                    // }
+        
+                    let myBuilder = new xml2js.Builder()
+                    // let myXML = myBuilder.buildObject(tempObj)
+                    let myXML = myBuilder.buildObject(this.state.ob1)
+                    console.log("XML sended to the server:")
+                    console.log(myXML)
+                    console.log(typeof myXML)
+        
+                    axios.post('http://localhost:5000/api/singers', { xml: myXML } )
+                        .then( (response) => { console.log(" \n Response from the Server: ", response) })
+                        .catch( (error) => { console.log(error) })
+        
+                    // this.setState({ name: '' })
+                    this.setState({ ob1: '' })
+                 }, 500)
 
-            this.setState({ name: '' })
         }
 
 

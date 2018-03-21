@@ -12,7 +12,8 @@ const SingerTemplate   = require('./API-Files/singerSchema')
 
     // Connection to database.
 // =============================================================================
-db.connect('mongodb://admin1:Webaholics1@ds115569.mlab.com:15569/xml-1', (err) => {
+// db.connect('mongodb://admin1:Webaholics1@ds115569.mlab.com:15569/xml-1', (err) => {
+db.connect('mongodb://master:Hkodoma48@ds121089.mlab.com:21089/legalxml', (err) => {
     if(err){ console.log(err) }else { console.log("Conected to DataBase.") }
 })
 
@@ -35,9 +36,9 @@ router.use( (req, res, next) => {
 
 
     // ROUTES
-// =============================================================================
+// ===============================================================================
 app.use('/api', router)      // all of our routes will be prefixed with /api
-router.route('/singers')     // create a singer (accessed at POST http://localhost:5000/api/singers)
+router.route('/singers')     // create a singer (accessed at POST http://localhost:5000/api/singers.
 
 
     .post( (req, res) => {
