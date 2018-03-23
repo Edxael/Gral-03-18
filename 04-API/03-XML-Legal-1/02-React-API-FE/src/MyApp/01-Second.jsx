@@ -17,8 +17,6 @@ export default class extends React.Component{
         const getLocalXML = () => {
             console.log("Get Localy Hosted XML.")
 
-            // code: https://github.com/Edxael/Gral-02-18/blob/master/02-React/19-longxml/src/MyApp/00-Main.jsx
-
             fetch(LocalXML)
                 .then((res) => { return res.text() })
                 .then((res) => { return parseString(res, (err, result) => { this.setState({ ob1: result }) }) })
@@ -97,7 +95,7 @@ export default class extends React.Component{
 
         return(
             <div>
-                <h1>XML - Long - API - 1.4</h1>
+                <h1>XML - Legal - API - 1.4</h1>
                 <hr/>
 
 
@@ -150,4 +148,3 @@ export default class extends React.Component{
         )
     }
 }
-
