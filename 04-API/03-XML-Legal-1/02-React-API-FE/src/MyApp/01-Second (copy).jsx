@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+// import xml2js from 'xml2js'
 import './styles/00-main.css'
 
 import LocalXML from './xml-data/answer.xml'
@@ -62,8 +63,16 @@ export default class extends React.Component{
 
                 setTimeout(() => { 
                     console.log( this.state.ob1 )
+                    
+
+                    // let tempObj = {
+                    //     SingerProfile: {
+                    //         name: this.state.name
+                    //     }
+                    // }
         
                     let myBuilder = new xml2js.Builder()
+                    // let myXML = myBuilder.buildObject(tempObj)
                     let myXML = myBuilder.buildObject(this.state.ob1)
                     console.log("XML sended to the server:")
                     console.log(myXML)
@@ -73,11 +82,25 @@ export default class extends React.Component{
                         .then( (response) => { console.log(" \n Response from the Server: ", response) })
                         .catch( (error) => { console.log(error) })
         
+                    // this.setState({ name: '' })
                     this.setState({ ob1: '' })
                  }, 500)
 
         }
 
+
+    // --------------------------------------------------------------------------------
+        const update1 = () => {
+            console.log("----------------------------------- \n  UPDATE Singer Record:")
+
+            axios.put('http://localhost:5000/api/records/' + this.state.updateid, {
+                name: this.state.updatename
+            })
+                .then( (response) => { console.log(" \n Response from the Server: ",response) })
+                .catch( (error) => { console.log(error) })
+
+            this.setState({ updateid: '', updatename: '' })
+        }
 
 
     // --------------------------------------------------------------------------------
@@ -120,7 +143,7 @@ export default class extends React.Component{
         
 
                 <div className="secWrap">
-                    <h4>GET ONE RECORD BY ID</h4>
+                    <h4>GET ONE SINGER BY ID</h4>
                     <input type="text" value={this.state.findone} onChange={ (e) => { this.setState({ findone: e.target.value }) } }/>
                     <br/>
                     <button onClick={ getOne }>GET ONE</button>
@@ -130,11 +153,24 @@ export default class extends React.Component{
                 <br/>
 
                 <div className="secWrap">
-                    <h4>POST A NEW LEGAL RECORD</h4>
-       
+                    <h4>POST A NEW SINGER</h4>
+                    {/* <input type="text" value={this.state.name} onChange={ (e) => { this.setState({ name: e.target.value }) } }/> */}
+                    {/* <br/> */}
                     <button onClick={ post1 }>POST</button>
                     <br/><br/>
                 </div>
+
+                {/* <br/>
+
+                <div className="secWrap">
+                    <h4>UPDATE SINGER NAME</h4>
+                    <input type="text" placeholder="ID of Singer to UPDATE" value={this.state.updateid} onChange={ (e) => { this.setState({ updateid: e.target.value }) } }/>
+                    <br/>
+                    <input type="text" placeholder="New Name" value={this.state.updatename} onChange={ (e) => { this.setState({ updatename: e.target.value }) } }/>
+                    <br/>
+                    <button onClick={ update1 }>UPDATE</button>
+                    <br/><br/>
+                </div> */}
 
                 <br/>
 

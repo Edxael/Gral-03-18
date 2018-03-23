@@ -6,13 +6,12 @@ const bodyParser  = require('body-parser')
 const db          = require('mongoose')
 const parseString = require('xml2js').parseString
 const xml2js = require('xml2js')
-const SingerTemplate   = require('./API-Files/singerSchema')
+const RecordTemplate   = require('./API-Files/RecordSchema')
 
 
 
     // Connection to database.
 // =============================================================================
-// db.connect('mongodb://admin1:Webaholics1@ds115569.mlab.com:15569/xml-1', (err) => {
 db.connect('mongodb://master:Hkodoma48@ds121089.mlab.com:21089/legalxml', (err) => {
     if(err){ console.log(err) }else { console.log("Conected to DataBase.") }
 })
@@ -38,64 +37,59 @@ router.use( (req, res, next) => {
     // ROUTES
 // ===============================================================================
 app.use('/api', router)      // all of our routes will be prefixed with /api
-router.route('/singers')     // create a singer (accessed at POST http://localhost:5000/api/singers.
+router.route('/records')     // create a singer (accessed at POST http://localhost:5000/api/records.
 
 
     .post( (req, res) => {
-        console.log( 'Singer Record Created:\n', req.body.xml )
 
-        const oneSinger = new SingerTemplate()
-        parseString(req.body.xml, (err, result) => { oneSinger.name = result.SingerProfile.name[0] } )
+        let myTemp = req.body.xml
+        console.log(myTemp)
+        console.log(typeof myTemp)
 
-        // oneSinger.save( (err) => {   
-        //     if (err) { res.send(err) }
-        //     res.json({ message: 'Singer Record Created...' })
-        // })
+        const oneRecord = new RecordTemplate()
+        console.log("One Record: ", oneRecord)
+        oneRecord.xml = myTemp
+        console.log("One Record: ", oneRecord.xml)
+        console.log("One Record: ", oneRecord)
+
+        oneRecord.save( (err) => {   
+            if (err) { res.send(err) }
+            res.json({ message: 'Legal Record Created...' })
+        })
     })
 
 
     
-    .get( (req, res) => {   // get all the singers (accessed at GET http://localhost:5000/api/singers)
-        SingerTemplate.find( (err, allSingers) => {
+    .get( (req, res) => {   // get all the records (accessed at GET http://localhost:5000/api/records)
+
+        RecordTemplate.find( (err, allRecords) => {
             if (err) { res.send(err) }
-            res.json(allSingers)
+            res.json(allRecords)
             console.log("All records send to Client: \n ")
         })
     })
 
             // ------------------------------------------------------------
 
-router.route('/singers/:_id')  
+router.route('/records/:_id')  
     
-    .get( (req, res) => {  // http://localhost:5000/api/singers/5aab446b0f66102c6131b83b
-        SingerTemplate.findById(req.params._id, (err, oneSinger) => {
+    .get( (req, res) => {  // http://localhost:5000/api/records/5aab446b0f66102c6131b83b
+        RecordTemplate.findById(req.params._id, (err, oneRecord) => {
             if (err) { res.send(err) }
-
-            let temObj = {
-                SingerProfile: {
-                    Name: oneSinger.name,
-                    id: JSON.stringify(oneSinger._id)
-                }
-            }
-
-            let myBuilder = new xml2js.Builder()
-            let myXML = myBuilder.buildObject(temObj)
-
-            console.log('Record Send to client: \n ', myXML)
-            res.send( myXML )   
+            console.log('Record Send to client: \n ', oneRecord)
+            res.send( oneRecord )   
         })
     })
 
 
 
-    .put( (req, res) => {   // update the singer record with given id (accessed at PUT http://localhost:8080/api/singers/:_id)
-        SingerTemplate.findById(req.params._id, (err, oneSinger) => {
+    .put( (req, res) => {   // update the legal record with given id (accessed at PUT http://localhost:8080/api/records/:_id)
+        RecordTemplate.findById(req.params._id, (err, oneRecord) => {
             if (err) { res.send(err) }
-
-            oneSinger.name = req.body.name;  // update the singer record
-            oneSinger.save( (err) => {   // save the singer record
+            oneRecord.xml = req.body.xml;  // update the singer record
+            oneRecord.save( (err) => {   // save the singer record
                 if (err) { res.send(err) }
-                res.json({ message: 'Singer Record updated!' })
+                res.json({ message: 'Legal Record updated!' })
                 console.log('Record Updated...')
             })
         })
@@ -103,8 +97,8 @@ router.route('/singers/:_id')
 
 
 
-    .delete( (req, res) => {  // delete a singer record using id (accessed at DELETE http://localhost:8080/api/singers/:_id)
-        SingerTemplate.remove({
+    .delete( (req, res) => {  // delete a Legal record using id (accessed at DELETE http://localhost:8080/api/records/:_id)
+        RecordTemplate.remove({
             _id: req.params._id
         }, (err, xmldb) => {
             if (err) { res.send(err) }
