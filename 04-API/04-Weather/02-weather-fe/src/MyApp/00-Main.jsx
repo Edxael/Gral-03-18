@@ -6,20 +6,15 @@ export default class extends React.Component{
 
     render(){
 
-        const Get1 = () => {
-            console.log("Geting data:")
-            console.log(this.state.zip)
+        const Get1 = async () => {
+            console.log('From the Async Fun...')
 
-            axios.get('http://localhost:5000/api/zipcode/' + this.state.zip)
-                .then((response) => { this.setState({ myapires: response }) })
-
-            setTimeout(() => {
-                console.log('Data: ', this.state.myapires)
-            }, 500)
-
-
+            let mytd = await axios.get('http://localhost:5000/api/zipcode/' + this.state.zip)
+            this.setState({ myapires: await mytd })
+            console.log('The Value is: ', this.state.myapires)
             this.setState({ zip: '' })
         }
+
 
         return(
             <div>
