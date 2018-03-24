@@ -42,6 +42,13 @@ router.route('/zipcode/:_id')
 
 
 
+    // THE SERVER LISTENER
+// =============================================================================
+
+app.listen(5000, (err) => {
+    if(err) { throw err }
+    console.log(" \n Edmundo's WEATHER-API  UP & RUNNING...")
+})
 
 
 
@@ -53,7 +60,8 @@ router.route('/zipcode/:_id')
 
 
 
-
+    // Old code I use when making the call to the Weather API with hard code data
+// ================================================================================
 // let zipCode = '85732'
 // let temp1 = 'mp'
 // axios.get("http://api.openweathermap.org/data/2.5/weather?zip=" + zipCode + ",us&APPID=a90a1769668d41f38e80d8ee118e7760")
@@ -65,19 +73,3 @@ router.route('/zipcode/:_id')
 //     console.log(" ")
 //     console.log(temp1)
 // }, 500)
-
-
-
-
-
-
-
-
-
-    // THE SERVER LISTENER
-// =============================================================================
-
-app.listen(5000, (err) => {
-    if(err) { throw err }
-    console.log(" \n Edmundo's WEATHER-API  UP & RUNNING...")
-})
