@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 
 export default class extends React.Component{
-    state = { zip: '', myapires: {} }
+    state = { zip: '', myapires: {}, show: false }
 
     render(){
 
@@ -15,6 +15,12 @@ export default class extends React.Component{
             this.setState({ zip: '' })
         }
 
+        const WeatherData = () => {
+            return (
+                <div>Hello from the data</div>
+            )
+        }
+
 
         return(
             <div>
@@ -22,9 +28,13 @@ export default class extends React.Component{
                 <p>Put the zipcode to get weather information.2</p>
                 <input type="text" placeholder=" ZIPCODE" value={this.state.zip} onChange={ (e) => { this.setState({ zip: e.target.value }) } } />
                 <br/><br/>
+
                 <button onClick={Get1} >Get Data</button>
                 <br/>
                 <hr/>
+
+                { this.props.show ? <div>Yes</div> : <div>NO</div> }
+
             </div>
         )
     }
