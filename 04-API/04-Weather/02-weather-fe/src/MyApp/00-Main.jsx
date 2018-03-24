@@ -10,15 +10,11 @@ export default class extends React.Component{
             console.log('From the Async Fun...')
 
             let mytd = await axios.get('http://localhost:5000/api/zipcode/' + this.state.zip)
-            this.setState({ myapires: await mytd })
+            this.setState({ myapires: await mytd.data })
             console.log('The Value is: ', this.state.myapires)
-            this.setState({ zip: '' })
-        }
+            this.setState({ zip: '', show: true })
 
-        const WeatherData = () => {
-            return (
-                <div>Hello from the data</div>
-            )
+
         }
 
 
@@ -33,10 +29,26 @@ export default class extends React.Component{
                 <br/>
                 <hr/>
 
-                { this.props.show ? <div>Yes</div> : <div>NO</div> }
+                { this.state.show ? <WeatherInfo data={ this.state.myapires } /> : <div>Provide Zipcode to show weather data</div> }
 
             </div>
         )
     }
 }
 
+
+class WeatherInfo extends React.Component{
+    render(){
+        console.log("Data: ", this.props.data)
+        const data = this.props.data
+        return(
+            <div>
+                <h3>The Weather forecast for: { data.name } </h3>
+               
+                {/* <p><strong>Weather: </strong> { data }</p>
+                <p><strong></strong> { data }</p> */}
+
+            </div>
+        )
+    }
+}
