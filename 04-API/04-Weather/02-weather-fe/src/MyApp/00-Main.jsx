@@ -35,21 +35,3 @@ export default class extends React.Component{
     }
 }
 
-
-
-
-
-//     used to get data straight from the weather api
-// const Get1 = () => {
-//     console.log('Get Data....')
-//     let temp1 = ''
-//     axios.get("http://api.openweathermap.org/data/2.5/weather?zip=84109,us&APPID=a90a1769668d41f38e80d8ee118e7760")
-//         .then((data) => { temp1 = data.request  })
-//         // .then((data) => { temp1 = JSON.parse( data.request.response ) })
-        
-//     setTimeout(() => {
-//         console.log(typeof temp1)
-//         console.log(" ")
-//         console.log(temp1)
-//     }, 500)
-// }
