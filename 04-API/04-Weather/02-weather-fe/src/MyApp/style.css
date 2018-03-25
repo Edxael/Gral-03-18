@@ -1,0 +1,24 @@
+body{
+    background-color: black;
+    padding: 5px;
+    background-image: url("bg2.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+    text-align: center;
+
+    padding: 200px 45% 10% 50px;
+}
+
+.dataCont{
+    background-color: rgba(254, 254, 254, 0.95);
+    border: 5px solid rgb(240, 233, 30);
+    margin: 0 auto;
+}
+
+.zip-input{
+    background-color: rgb(224, 255, 181);
+    padding-left: 5px;
+}
+
+
