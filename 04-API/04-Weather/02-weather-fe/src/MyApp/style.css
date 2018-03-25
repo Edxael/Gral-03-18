@@ -11,8 +11,8 @@ body{
 }
 
 .dataCont{
-    background-color: rgba(254, 254, 254, 0.95);
-    border: 5px solid rgb(240, 233, 30);
+    background-color: rgba(254, 254, 254, 0.9);
+    border: 15px solid rgb(10, 255, 243);
     margin: 0 auto;
 }
 
