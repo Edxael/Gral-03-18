@@ -6,7 +6,7 @@ import './99-style.css'
 import Home from './01-Home'
 import Store from './02-store'
 import About from './03-About'
-import Payment from './04-Payment'
+import Payment from './PaymentForms/01-Payment-Cont'
 
 
 export default class extends React.Component{
@@ -20,11 +20,13 @@ export default class extends React.Component{
                         <br/><br/>
 
                         <div className="clear1">
+
                             <div>
                                 <Link className="LinkStyle" to="/">Home</Link>
                                 <Link className="LinkStyle" to="/1">Packages</Link>
                                 <Link className="LinkStyle" to="/2">About</Link>
                             </div>
+                            
                             <br/>
                             <hr/>
 
