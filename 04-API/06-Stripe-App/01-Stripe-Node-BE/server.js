@@ -30,29 +30,8 @@ app.post("/charge", (req, res) => {
 
 
     let myRes = { name: "Edmundo Rubio" }
-
-    // res.send(req)
-    // res.json({ message: 'Singer Record Created...' })
-    // res.json({ message: "caleb" })
     res.send(myRes)
 
-    // stripe.customers.create({
-    //    email: req.body.stripeEmail,
-    //   source: req.body.stripeToken
-    // })
-  
-    // stripe.customers.create({
-    //    email: req.body.stripeEmail,
-    //   source: req.body.stripeToken
-    // })
-    // .then(customer =>
-    //   stripe.charges.create({
-    //     amount,
-    //     description: "Sample Charge",
-    //        currency: "usd",
-    //        customer: customer.id
-    //   }))
-    // .then(charge => res.render("charge.pug"));
   })
 
   
