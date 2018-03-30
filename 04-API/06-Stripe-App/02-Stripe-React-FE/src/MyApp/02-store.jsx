@@ -22,10 +22,6 @@ export default class extends React.Component{
 
     onToken = (token) => {
         console.log("Token is: ", token)
-        // let data2send = JSON.stringify(token)
-        // console.log("Strinnify is: ", data2send)
-
-        // axios.post('http://localhost:5000/charge/', { mydata: data2send } )
         axios.post('http://localhost:5000/charge/', { toke: token } )
                 .then(res => {
                     console.log(res);
@@ -139,3 +135,8 @@ export default class extends React.Component{
     }
 }
 
+
+
+
+// this is the one that I use to communicate
+// <StripeCheckout token={this.onToken} stripeKey="pk_test_6pRNASCoBOKtIshFeQd4XMUh" />
