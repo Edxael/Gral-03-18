@@ -3,7 +3,7 @@ import AllMoviesData from './98-data.json'
 
 export default class extends React.Component{
     render(){
-        console.log(AllMoviesData)
+        // console.log(AllMoviesData)
         return(
             <div>
                 <h1>This Week movies</h1>

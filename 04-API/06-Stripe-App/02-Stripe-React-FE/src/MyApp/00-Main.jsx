@@ -4,9 +4,11 @@ import Banner1 from './img/tps1.png'
 import './99-style.css'
 
 import Home from './01-Home'
-import Store from './02-store'
-import About from './03-About'
-import Payment from './PaymentForms/01-Payment-Cont'
+import About from './02-About'
+import Pricing from './06-Picing'
+import LogIn from './03-LogIn'
+import CreateAcc from './04-CreateAcc'
+import ResetPass from './07-Reset-Password'
 
 
 export default class extends React.Component{
@@ -23,18 +25,20 @@ export default class extends React.Component{
 
                             <div>
                                 <Link className="LinkStyle" to="/">Home</Link>
-                                <Link className="LinkStyle" to="/1">Packages</Link>
-                                <Link className="LinkStyle" to="/2">About</Link>
+                                <Link className="LinkStyle" to="/1">About-Us</Link>
+                                <Link className="LinkStyle" to="/2">Pricing</Link>
+                                <Link className="LinkStyle" to="/3">Log-In</Link>
                             </div>
                             
                             <br/>
                             <hr/>
 
                             <Route exact path="/" component={Home}/>
-                            <Route path="/1" component={Store}/>
-                            <Route path="/2" component={About}/>
-                            <Route path="/3" component={Payment}/>
-
+                            <Route path="/1" component={About}/>
+                            <Route path="/2" component={Pricing}/>
+                            <Route path="/3" component={LogIn}/>
+                            <Route path="/4" component={CreateAcc}/>
+                            <Route path="/5" component={ResetPass}/>
                         </div>
                     </div>
                 
