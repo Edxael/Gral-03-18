@@ -11,7 +11,77 @@ const stripe = require("stripe")(keySecret)
 const bodyParser = require('body-parser')
 const db = require('mongoose')
 const CustomerTemp = require('./Schemas/01-Customers')
-const router = require('express').Router() 
+const express     = require('express') 
+const cors = require('cors')
+
+
+// ********************  Authentication  ****************************
+const session = require('express-session')
+const passport = require('passport')
+const LocalStrategy = require('passport-local').Strategy
+const multer = require('multer')
+const flash = require('connect-flash')
+const mongoose = require('mongoose')
+const dbcx = db.Connection
+
+
+
+    // Hnadle session
+app.use(session( {
+    secret: 'secret',
+    saveUninitialized: true,
+    resave: true
+} ))
+
+    // Passport
+app.use(passport.initialize())
+app.use(passport.session())
+
+    // Validator
+const expressValidator = require('express-validator')
+// app.use(expressValidator(middlewareOptions))
+app.use(expressValidator({
+    errorFormatter: function(param, msg, value) {
+        var namespace = param.split('.')
+        , root    = namespace.shift()
+        , formParam = root;
+  
+      while(namespace.length) {
+        formParam += '[' + namespace.shift() + ']';
+      }
+      return {
+        param : formParam,
+        msg   : msg,
+        value : value
+      }
+    }
+  }))
+
+
+
+    // Express-Messages
+app.use(require('connect-flash')());
+app.use(function (req, res, next) {
+  res.locals.messages = require('express-messages')(req, res);
+  next();
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ********************************************************************
+
+
+
 
 
 
@@ -31,36 +101,40 @@ db.connect('mongodb://zadmin:Hkodoma48@ds231199.mlab.com:31199/sflix', (err) => 
 
 
 
-    // ROUTING
+    // MIDLEWARE
 // ===================================================
-app.use('/', router)
+
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(require('./headers'))
+const router = express.Router() 
 
 
 
+
+
+    // ROUTING
+// ===================================================
+app.use('/', router)
 // app.get("/", (req, res) => {
 //     res.render("index.pug", {keyPublishable})
 // } )
 
 router.route('/customers').post( (req, res) => {  // Create a new singer and save it on the db.
 
-    console.log("Request to create user.......");
+    const oneCustomer = new CustomerTemp()      // create a new instance of the Singer model
+    oneCustomer.name = req.body.xinfo.name
+    oneCustomer.email = req.body.xinfo.email
+    oneCustomer.password = req.body.xinfo.password
+    oneCustomer.acctype = "customer"
+    oneCustomer.package = "none"
+    console.log("User info to save on DB: ", oneCustomer )
     
-    // console.log( "The REQ: ", req.body )
-    
+    oneCustomer.save( (err) => {   // save the customer and check for errors
+        if (err) { res.send(err) }
+        res.json({ message: 'Customer Record Created: ', cdata: oneCustomer})
+    })
 
-    // const oneCustomer = new CustomerTemp()      // create a new instance of the Singer model
-    // oneCustomer.name = req.body.name
-    // oneCustomer.email = req.body.email
-    // oneCustomer.password = req.body.password
-
-    // neCustomer.save( (err) => {   // save the customer and check for errors
-    //     if (err) { res.send(err) }
-    //     res.json({ message: 'Record Created for singer: ' + oneSinger.name })
-    // })
-    res.json({ message: "Sucess" })
 })
 
 
