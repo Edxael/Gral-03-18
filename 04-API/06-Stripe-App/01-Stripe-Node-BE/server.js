@@ -12,6 +12,14 @@ const bodyParser = require('body-parser')
 
 
 
+    // DataBase Connection (zadmin) => { Hk...48 }
+// ===================================================
+db.connect('mongodb://zadmin:Hkodoma48@ds231199.mlab.com:31199/sflix', (err) => {
+    if(err){ console.log(err) }else { console.log("Conected to DataBase.") }
+})
+
+
+
 
     // Recurring Charges Plans
 // ===================================================
