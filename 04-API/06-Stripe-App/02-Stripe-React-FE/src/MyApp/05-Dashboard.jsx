@@ -25,7 +25,7 @@ export default class extends React.Component{
                         <div><strong>Name: </strong> {userInfo.name} </div>
                         <div><strong>Email: </strong> {userInfo.email} </div>
                         <div><strong>Password: </strong> ******** </div>
-                        <div><strong>Package: </strong> {userInfo.package} </div>
+                        <div><strong>Package: </strong> { ( userInfo.package === 1 ) ? "Bronze" : ( userInfo.package === 2 ) ? "Silver" : ( userInfo.package === 3 ) ? "Gold" : "No Package" } </div>
                     </div>
 
                     <div className="ButtonCont">

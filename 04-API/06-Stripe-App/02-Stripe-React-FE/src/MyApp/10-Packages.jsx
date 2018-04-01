@@ -1,5 +1,5 @@
 import React from 'react'
-// import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import StripeCheckout from 'react-stripe-checkout'
 import Menu2 from './Menus/Menu2'  // <Menu2/>
@@ -7,32 +7,45 @@ import * as UCR from './97-LS'
 
 
 export default class extends React.Component{
-    state = { redirect: false, package: 0, pay: false }
+    constructor(props){
+        super(props)
+        this.state = { redirect: false, package: 0, pay: false }
 
-    // onToken = (token) => {
-    //     console.log("Token is: ", token)
+        this.onToken = this.onToken.bind(this)
+    }
 
-    //     fetch('http://localhost:5000/charge', {
-    //       method: 'POST',
-    //       body: JSON.stringify(token),
-    //         })
-    //     // .then((response) => { response.json().then( (data) => {alert(`We are in business, ${data.email}`)  })  })
-    //     .then((data) => { console.log("The data is: ", data ) })
+    
 
-    //   }
 
+
+    componentDidMount(){
+
+    }
 
     onToken = (token) => {
+        console.clear()
         console.log("Token is: ", token)
-        axios.post('http://localhost:5000/charge/', { toke: token } )
+        axios.post('http://localhost:5000/charge/', { token: token, customer: UCR.get('Ucre'), package: this.state.package } )
                 .then(res => {
                     console.log(res);
                     console.log(res.data);
                 })
                 .catch( (error) => { console.log(error) })
-    }
+                
+                
+                let userInfo = UCR.get('Ucre')
+                console.log("The old package: ", userInfo.package)
 
-    
+                userInfo.package = this.state.package
+                console.log("The new Package: ", userInfo.package)
+
+                UCR.add('Ucre', userInfo)
+
+                let changedInfo = UCR.get('Ucre')
+                console.log(changedInfo)
+        
+        setTimeout(() => { this.setState({ redirect: true }) }, 700);
+    }
 
 
     render(){
@@ -40,26 +53,6 @@ export default class extends React.Component{
         let userInfo = UCR.get('Ucre')
         console.log(userInfo)
 
-        // const executePayment = () => {
-        //     console.log("Executing Payment...")
-        //     console.log("Package Value: ", this.state.package)
-        //     console.log(" ")
-        //     this.setState({ pay: true })
-        // }
-
-        // const stripePayment = () => {
-        //     console.log(" \n Executing Payment.. \n ")
-           
-        //     return(
-        //         <div>
-
-        //             <h3>Payment...</h3>
-                    
-
-                    
-        //         </div>
-        //     )
-        // }
 
         return(
             <div>
@@ -130,12 +123,13 @@ export default class extends React.Component{
                     <p>Select your monthly package, then click Payment</p>
                     <br/>
 
-                    <StripeCheckout token={this.onToken} stripeKey="pk_test_6pRNASCoBOKtIshFeQd4XMUh" />
+                        <StripeCheckout token={this.onToken}  stripeKey="pk_test_6pRNASCoBOKtIshFeQd4XMUh" />
 
+                        { this.state.redirect ? <Redirect push to="/10" /> : <div>...</div> }
+            
                     <br/>
                     
-                    {/* { this.state.pay ? React.createElement(stripePayment) : <button onClick={ executePayment } >PAYMENT</button> } */}
-                    {/* { this.state.redirect ? <Redirect push to="/3" /> : <div>...</div> } */}
+                    
 
                 </div>
             </div>
@@ -148,3 +142,28 @@ export default class extends React.Component{
 
 // this is the one that I use to communicate
 // <StripeCheckout token={this.onToken} stripeKey="pk_test_6pRNASCoBOKtIshFeQd4XMUh" />
+
+
+
+// { this.state.pay ? React.createElement(stripePayment) : <button onClick={ executePayment } >PAYMENT</button> } */}
+
+
+
+
+
+// ===========================================================================================================
+
+// onToken = (token) => {
+//     console.log("Token is: ", token)
+//     axios.post('http://localhost:5000/charge/', { toke: token } )
+//             .then(res => {
+//                 console.log(res);
+//                 console.log(res.data);
+//             })
+//             .catch( (error) => { console.log(error) })
+// }
+
+
+// <StripeCheckout token={this.onToken} stripeKey="pk_test_6pRNASCoBOKtIshFeQd4XMUh" />
+
+// ===========================================================================================================

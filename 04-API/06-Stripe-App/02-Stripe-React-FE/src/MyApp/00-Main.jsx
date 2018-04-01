@@ -13,6 +13,7 @@ import DashBoard from './05-Dashboard'
 import Packages from './10-Packages'
 import LogOut from './08-Log-Out'
 import UpdatePackage from './10-Packages'
+import Thanks from './09-ThanksPackage'
 
 
 export default class extends React.Component{
@@ -37,6 +38,7 @@ export default class extends React.Component{
                             <Route path="/7" component={Packages}/>
                             <Route path="/8" component={LogOut}/>
                             <Route path="/9" component={UpdatePackage}/>
+                            <Route path="/10" component={Thanks}/>
 
                         </div>
                     </div>
