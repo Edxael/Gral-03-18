@@ -22,3 +22,5 @@ https://www.udemy.com/node-with-react-fullstack-web-development/learn/v4/content
 
 
 
+posible solution to not find account information
+https://stackoverflow.com/questions/39431763/getting-error-when-i-try-to-payout-to-managed-account

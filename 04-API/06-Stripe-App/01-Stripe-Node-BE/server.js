@@ -70,10 +70,39 @@ router.route('/customers/:email').get( (req, res) => {
 
 //------[ To Charge card  ]--------------------------------------------------------------------------------
 app.post("/charge", (req, res) => {
-    console.log(req.body)
-    console.log("The request is type: ", typeof res , " \n ")
-    let myRes = { name: "Edmundo Rubio" }
-    res.send(myRes)
+    // console.log(req.body)
+    // console.log("The request is type: ", typeof res , " \n ")
+    const stripeToken = req.body.token
+    console.log(stripeToken)
+    
+
+    // Charge the user's card:       
+    stripe.charges.create({
+        amount: 1000,
+        currency: "usd",
+        description: "Example charge",
+        source: stripeToken,
+    }, (err, charge) => {
+        // asynchronously called
+
+        if(err){
+            console.log("==============================")
+            console.log("  Error: ", err )
+            res.send({
+                success: false,
+                message: "Error :( ..."
+            })
+        }else{
+            console.log("==============================")
+            console.log("  Charge: ", charge )
+
+            res.send({
+                success: true,
+                message: "Success  ;) ..."
+            })
+        }
+    });
+
 }) //-------------------------------------------------------------------------------------------------------
   
 

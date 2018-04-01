@@ -28,23 +28,25 @@ export default class extends React.Component{
         axios.post('http://localhost:5000/charge/', { token: token, customer: UCR.get('Ucre'), package: this.state.package } )
                 .then(res => {
                     console.log(res);
-                    console.log(res.data);
+                    console.log(res.data)
+                    if(res.data.success){ 
+                        setTimeout(() => { 
+                            let userInfo = UCR.get('Ucre')
+                            console.log("The old package: ", userInfo.package)
+
+                            userInfo.package = this.state.package
+                            console.log("The new Package: ", userInfo.package)
+
+                            UCR.add('Ucre', userInfo)
+
+                            let changedInfo = UCR.get('Ucre')
+                            console.log(changedInfo)
+
+                            this.setState({ redirect: true }) 
+                        }, 1500) 
+                    }
                 })
-                .catch( (error) => { console.log(error) })
-                
-                
-                let userInfo = UCR.get('Ucre')
-                console.log("The old package: ", userInfo.package)
-
-                userInfo.package = this.state.package
-                console.log("The new Package: ", userInfo.package)
-
-                UCR.add('Ucre', userInfo)
-
-                let changedInfo = UCR.get('Ucre')
-                console.log(changedInfo)
-        
-        setTimeout(() => { this.setState({ redirect: true }) }, 700);
+                .catch( (error) => { console.log(error) })   
     }
 
 
