@@ -70,3 +70,4 @@ export default class extends React.Component{
 // { this.state.redirect ? <Redirect push to="/3" /> : <button onClick={ () => { this.setState({ redirect: true })  } } >Log-In to My Account</button>}
 
 // onClick={ () => { this.setState({ createacc: true }) } }
+
