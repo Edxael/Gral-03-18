@@ -115,3 +115,38 @@ body{
 
 }
 
+
+
+
+/* === DASH-BOARD.JSX =========================================================== */
+
+.DashInfoCont{
+    display: flex;
+}
+
+.userDispInfo{
+    background-color: rgba(29, 255, 150, 0.3);
+    border: 1px solid black;
+    padding: 10px;
+    text-align: left;
+    width: 60%;
+    margin-right: 15px;
+}
+
+.ButtonCont{
+    display: flex;
+    flex-direction: column;
+}
+
+.ButtonStyle{
+    background-color: rgb(29, 255, 150);
+    border: 1px solid black;
+    padding: 5px;
+    margin: 0px 0px 2px 0px;
+}
+
+.ButtonStyle:hover{
+    background-color: rgb(198, 255, 228);
+}
+
+

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
+import Menu1 from './Menus/Menu1'  // <Menu1/>
 // import StripeCheckout from 'react-stripe-checkout'
 
 
@@ -8,9 +9,13 @@ export default class extends React.Component{
 
 
     render(){
+        console.clear()
 
         return(
             <div>
+
+                <Menu1/>
+
                 <h1>Packages.</h1>
 
                 <div className="table-cont">

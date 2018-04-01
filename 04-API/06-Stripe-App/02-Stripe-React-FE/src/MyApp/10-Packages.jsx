@@ -2,6 +2,8 @@ import React from 'react'
 // import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import StripeCheckout from 'react-stripe-checkout'
+import Menu2 from './Menus/Menu2'  // <Menu2/>
+import * as UCR from './97-LS'
 
 
 export default class extends React.Component{
@@ -34,6 +36,9 @@ export default class extends React.Component{
 
 
     render(){
+        console.clear()
+        let userInfo = UCR.get('Ucre')
+        console.log(userInfo)
 
         // const executePayment = () => {
         //     console.log("Executing Payment...")
@@ -58,7 +63,10 @@ export default class extends React.Component{
 
         return(
             <div>
-                <h1>Packages.</h1>
+
+                <Menu2/>
+
+                <h1>Update your Package.</h1>
 
                 <div className="table-cont">
 

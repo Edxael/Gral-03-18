@@ -1,11 +1,18 @@
 import React from 'react'
 import AllMoviesData from './98-data.json'
+import Menu1 from './Menus/Menu1'  //<Menu1/>
+import Menu2 from './Menus/Menu2'  // <Menu2/>
+import * as UCR from './97-LS'
 
 export default class extends React.Component{
     render(){
-        // console.log(AllMoviesData)
+        console.clear()
+        let logTes = UCR.get('Ucre')
         return(
             <div>
+
+                { logTes.acctype ? <Menu2/> : <Menu1/> }
+
                 <h1>This Week movies</h1>
 
                 <div className="all-movies-cont">

@@ -1,14 +1,18 @@
 import React from 'react'
 import axios from 'axios'
+import { Redirect } from 'react-router-dom'
+import * as UCR from './97-LS'
+import Menu1 from './Menus/Menu1'  //<Menu1/>
 
 
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 export default class extends React.Component{
 
-    state = { name: '', email: '', password: '',  }
+    state = { name: '', email: '', password: '', dashboard: false }
 
     render(){
+        console.clear()
 
         const CreateUser = (event) => {
             event.preventDefault()
@@ -20,16 +24,24 @@ export default class extends React.Component{
             }
 
             axios.post('http://localhost:5000/customers', { xinfo: userObj } )
-                .then( (response) => { console.log(" \n Response from the Server: ", response) })
+                .then( (response) => { 
+                    console.log(" \n Response from the Server: ", response) 
+                    UCR.add('Ucre', response.data.cdata)
+                })
                 .catch( (error) => { console.log("Error from Server: ", error) })
 
-            this.setState({ name: '', email: '', password: '' })
+            
+
+            this.setState({ name: '', email: '', password: '', dashboard: true })
         }
 
 
 
         return(
             <div>
+
+                <Menu1/>
+
                 <h1>Create Account.</h1>
 
                 <form action="" onSubmit={CreateUser} >
@@ -39,11 +51,13 @@ export default class extends React.Component{
 
                     <input type="submit" value="Create Account"/>
                 </form>
-
+                { this.state.dashboard ? <Redirect push to="/6" /> : <div>...</div> }
             </div>
         )
     }
 }
+
+
 
 
 

@@ -121,7 +121,6 @@ app.use('/', router)
 // } )
 
 router.route('/customers').post( (req, res) => {  // Create a new singer and save it on the db.
-
     const oneCustomer = new CustomerTemp()      // create a new instance of the Singer model
     oneCustomer.name = req.body.xinfo.name
     oneCustomer.email = req.body.xinfo.email
@@ -134,21 +133,45 @@ router.route('/customers').post( (req, res) => {  // Create a new singer and sav
         if (err) { res.send(err) }
         res.json({ message: 'Customer Record Created: ', cdata: oneCustomer})
     })
-
 })
 
 
 
-app.post("/charge", (req, res) => {
 
-    console.log(req.body)
-    console.log("The request is type: ", typeof res , " \n ")
+// router.route('/customers/:_id').get( (req, res) => {  // http://localhost:5000/api/singers/5aab446b0f66102c6131b83b
+    
+//     console.log("Searching on dataBase: \n ")
+//     console.log(req.params._id)
+//     console.log(typeof req.params._id)
+//     console.log(" ")
+
+//     // CustomerTemp.findById(req.params._id, (err, customerRecord) => {
+//     CustomerTemp.findOne( { email: req.params._id} , (err, customerRecord) => {
+//         if (err) { res.send(err) }
+
+//         console.log('Record Send to client: \n ', customerRecord)
+//         res.send( customerRecord )   
+//     })
+// })
 
 
-    let myRes = { name: "Edmundo Rubio" }
-    res.send(myRes)
 
-  })
+router.route('/customers/:email').get( (req, res) => {  // http://localhost:5000/api/singers/5aab446b0f66102c6131b83b
+    
+    console.log("Searching on dataBase: \n ")
+    console.log(req.params.email)
+    console.log(typeof req.params.email)
+    console.log(" ")
+
+    // CustomerTemp.findById(req.params._id, (err, customerRecord) => {
+    CustomerTemp.findOne( { email: req.params.email} , (err, customerRecord) => {
+        if (err) { res.send(err) }
+
+        console.log('Record Send to client: \n ', customerRecord)
+        res.send( customerRecord )   
+    })
+})
+
 
   
 
@@ -164,5 +187,10 @@ app.listen(5000, (err) => {
 
 
 
-
+// app.post("/charge", (req, res) => {
+//     console.log(req.body)
+//     console.log("The request is type: ", typeof res , " \n ")
+//     let myRes = { name: "Edmundo Rubio" }
+//     res.send(myRes)
+//   })
 

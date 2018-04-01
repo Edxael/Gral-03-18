@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Banner1 from './img/tps1.png'
 import './99-style.css'
 
@@ -9,6 +9,10 @@ import Pricing from './06-Picing'
 import LogIn from './03-LogIn'
 import CreateAcc from './04-CreateAcc'
 import ResetPass from './07-Reset-Password'
+import DashBoard from './05-Dashboard'
+import Packages from './10-Packages'
+import LogOut from './08-Log-Out'
+import UpdatePackage from './10-Packages'
 
 
 export default class extends React.Component{
@@ -22,23 +26,18 @@ export default class extends React.Component{
                         <br/><br/>
 
                         <div className="clear1">
-
-                            <div>
-                                <Link className="LinkStyle" to="/">Home</Link>
-                                <Link className="LinkStyle" to="/1">About-Us</Link>
-                                <Link className="LinkStyle" to="/2">Pricing</Link>
-                                <Link className="LinkStyle" to="/3">Log-In</Link>
-                            </div>
-                            
-                            <br/>
-                            <hr/>
-
+                        
                             <Route exact path="/" component={Home}/>
                             <Route path="/1" component={About}/>
                             <Route path="/2" component={Pricing}/>
                             <Route path="/3" component={LogIn}/>
                             <Route path="/4" component={CreateAcc}/>
                             <Route path="/5" component={ResetPass}/>
+                            <Route path="/6" component={DashBoard}/>
+                            <Route path="/7" component={Packages}/>
+                            <Route path="/8" component={LogOut}/>
+                            <Route path="/9" component={UpdatePackage}/>
+
                         </div>
                     </div>
                 
@@ -47,4 +46,5 @@ export default class extends React.Component{
         )
     }
 }
+
 
