@@ -1,13 +1,14 @@
     // Test Keys to use on Development
 // ===================================================
-const keyPublishable = 'pk_test_6pRNASCoBOKtIshFeQd4XMUh'
-const keySecret = 'sk_test_BQokikJOvBiI2HlWgH4olfQ2'
+const keyPublishable = 'pk_test_IFYDACqD4HYsLjn9eZcB4x1B' // Using my pub.Key Here.
+const keySecret = 'sk_test_' // SSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
 
 
     // LOADING DEPENDENCIES
 // ===================================================
 const app = require("express")()
 const stripe = require("stripe")(keySecret)
+// const stripe = require("stripe")(keyPublishable)
 const bodyParser = require('body-parser')
 const db = require('mongoose')
 const CustomerTemp = require('./Schemas/01-Customers')
@@ -72,16 +73,21 @@ router.route('/customers/:email').get( (req, res) => {
 app.post("/charge", (req, res) => {
     // console.log(req.body)
     // console.log("The request is type: ", typeof res , " \n ")
-    const stripeToken = req.body.token
-    console.log(stripeToken)
+    console.log("=======================================")
+    const tokenID = req.body.tokenId
+    console.log(tokenID)
+    console.log("=======================================")
     
 
-    // Charge the user's card:       
+
+    // ----------------------------------------------------------------------------------
+    // //  1 time Charge the user's card:  
+    
     stripe.charges.create({
         amount: 1000,
         currency: "usd",
         description: "Example charge",
-        source: stripeToken,
+        source: tokenID,
     }, (err, charge) => {
         // asynchronously called
 
@@ -103,6 +109,8 @@ app.post("/charge", (req, res) => {
         }
     });
 
+
+
 }) //-------------------------------------------------------------------------------------------------------
   
 
@@ -115,4 +123,3 @@ app.listen(5000, (err) => {
     if(err) { throw err }
     console.log(" \n UP & RUNNING...")
 })
-

@@ -14,18 +14,11 @@ export default class extends React.Component{
         this.onToken = this.onToken.bind(this)
     }
 
-    
-
-
-
-    componentDidMount(){
-
-    }
 
     onToken = (token) => {
         console.clear()
         console.log("Token is: ", token)
-        axios.post('http://localhost:5000/charge/', { token: token, customer: UCR.get('Ucre'), package: this.state.package } )
+        axios.post('http://localhost:5000/charge/', { tokenId: token.id, customer: UCR.get('Ucre'), package: this.state.package } )
                 .then(res => {
                     console.log(res);
                     console.log(res.data)
@@ -48,6 +41,34 @@ export default class extends React.Component{
                 })
                 .catch( (error) => { console.log(error) })   
     }
+
+
+    // onToken = (token) => {
+    //     console.clear()
+    //     console.log("Token is: ", token)
+    //     axios.post('http://localhost:5000/charge/', { token: token, customer: UCR.get('Ucre'), package: this.state.package } )
+    //             .then(res => {
+    //                 console.log(res);
+    //                 console.log(res.data)
+    //                 if(res.data.success){ 
+    //                     setTimeout(() => { 
+    //                         let userInfo = UCR.get('Ucre')
+    //                         console.log("The old package: ", userInfo.package)
+
+    //                         userInfo.package = this.state.package
+    //                         console.log("The new Package: ", userInfo.package)
+
+    //                         UCR.add('Ucre', userInfo)
+
+    //                         let changedInfo = UCR.get('Ucre')
+    //                         console.log(changedInfo)
+
+    //                         this.setState({ redirect: true }) 
+    //                     }, 1500) 
+    //                 }
+    //             })
+    //             .catch( (error) => { console.log(error) })   
+    // }
 
 
     render(){
@@ -125,7 +146,7 @@ export default class extends React.Component{
                     <p>Select your monthly package, then click Payment</p>
                     <br/>
 
-                        <StripeCheckout token={this.onToken}  stripeKey="pk_test_6pRNASCoBOKtIshFeQd4XMUh" />
+                        <StripeCheckout token={this.onToken}  stripeKey="pk_test_IFYDACqD4HYsLjn9eZcB4x1B" />
 
                         { this.state.redirect ? <Redirect push to="/10" /> : <div>...</div> }
             
@@ -169,3 +190,7 @@ export default class extends React.Component{
 // <StripeCheckout token={this.onToken} stripeKey="pk_test_6pRNASCoBOKtIshFeQd4XMUh" />
 
 // ===========================================================================================================
+
+
+
+// <StripeCheckout token={this.onToken}  stripeKey="pk_test_6pRNASCoBOKtIshFeQd4XMUh" />

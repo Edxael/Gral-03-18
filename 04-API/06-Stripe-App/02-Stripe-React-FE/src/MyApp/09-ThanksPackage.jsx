@@ -1,6 +1,6 @@
 import React from 'react'
 import Menu2 from './Menus/Menu2'  // <Menu2/>
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 // import axios from 'axios'
 // import { Redirect } from 'react-router-dom'
 import * as UCR from './97-LS'

@@ -20,6 +20,8 @@ https://www.udemy.com/node-with-react-fullstack-web-development/learn/v4/content
 
 
 
+## current:
+https://www.youtube.com/watch?v=FhBtM70QZKM&t=35s
 
 
 posible solution to not find account information
