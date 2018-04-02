@@ -15,6 +15,7 @@ import LogOut from './08-Log-Out'
 import UpdatePackage from './10-Packages'
 import Thanks from './09-ThanksPackage'
 import OneTimeCharge from './11-OneTimeCharge'
+import Subcriptions from './12-Subcriptions'
 
 
 export default class extends React.Component{
@@ -41,6 +42,7 @@ export default class extends React.Component{
                             <Route path="/9" component={UpdatePackage}/>
                             <Route path="/10" component={Thanks}/>
                             <Route path="/11" component={OneTimeCharge}/>
+                            <Route path="/12" component={Subcriptions}/>
 
                         </div>
                     </div>

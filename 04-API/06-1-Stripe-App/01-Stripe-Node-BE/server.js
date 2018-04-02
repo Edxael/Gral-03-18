@@ -1,7 +1,7 @@
     // Test Keys to use on Development
 // ===================================================
 const keyPublishable = 'pk_test_IFYDACqD4HYsLjn9eZcB4x1B' // Using my pub.Key Here.
-const keySecret = 'sk_test_uzgyHUbwXma' // SSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+const keySecret = 'sk_test_uzgyHUbwXmaYdkxhNFXE6WNJ' // SSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
 
 
     // LOADING DEPENDENCIES
@@ -79,10 +79,8 @@ app.post("/charge", (req, res) => {
     console.log("=======================================")
     
 
-
-    // ----------------------------------------------------------------------------------
-    // //  1 time Charge the user's card:  
-    
+            // ---------------------------------------------------------
+            // //  1 time Charge the user's card:  
     stripe.charges.create({
         amount: 1000,
         currency: "usd",
@@ -108,9 +106,91 @@ app.post("/charge", (req, res) => {
             })
         }
     });
+}) //-------------------------------------------------------------------------------------------------------
 
 
 
+//------[ Subcriptions Charge card  ]--------------------------------------------------------------------------------
+
+        // ********* Creating Plans  *************
+const plan1 = stripe.plans.create({
+    product: {name: "Bronze Package"},
+    currency: 'usd',
+    interval: 'month',
+    nickname: 'Bronze Monthly',
+    amount: 10000,
+  })
+
+  const plan2 = stripe.plans.create({
+    product: {name: "Silver Package"},
+    currency: 'usd',
+    interval: 'month',
+    nickname: 'Silver Monthly',
+    amount: 10000,
+  })
+
+  const plan3 = stripe.plans.create({
+    product: {name: "Gold Package"},
+    currency: 'usd',
+    interval: 'month',
+    nickname: 'Gold Monthly',
+    amount: 10000,
+  })
+        // ************************************
+
+
+app.post("/subs", (req, res) => {
+    // console.log(req.body)
+    // console.log("The request is type: ", typeof res , " \n ")
+    console.log("=======================================")
+    console.log(" **** SUBSCRIPTION ****")
+    // console.log(plan1)
+    // const tokenID = req.body.tokenId
+    // console.log(tokenID)
+    console.log("The Email is: ", req.body.customer.email)
+    console.log("=======================================")
+
+        // ---------------------------------------------------------
+        // //  Creating a customer.. 
+    const customer1 = stripe.customers.create({
+        email: req.body.customer.email
+      })
+
+    customer1.then((data) => { 
+        console.log("The promise: ", data) 
+
+        
+    
+    })
+    
+
+            // ---------------------------------------------------------
+            // //  1 time Charge the user's card:  
+    // stripe.charges.create({
+    //     amount: 1000,
+    //     currency: "usd",
+    //     description: "Example charge",
+    //     source: tokenID,
+    // }, (err, charge) => {
+    //     // asynchronously called
+
+    //     if(err){
+    //         console.log("==============================")
+    //         console.log("  Error: ", err )
+    //         res.send({
+    //             success: false,
+    //             message: "Error :( ..."
+    //         })
+    //     }else{
+    //         console.log("==============================")
+    //         console.log("  Charge: ", charge )
+
+    //         res.send({
+    //             success: true,
+    //             message: "Success  ;) ..."
+    //         })
+    //     }
+    // });
 }) //-------------------------------------------------------------------------------------------------------
   
 
