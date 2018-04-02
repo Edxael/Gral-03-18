@@ -30,9 +30,9 @@ export default class extends React.Component{
 
                     <div className="ButtonCont">
                         <Link className="ButtonStyle" to="/9">Change Package</Link>
+                        <Link className="ButtonStyle" to="/11">One Time Charge</Link>
                         <Link className="ButtonStyle" to="#">Update Profile</Link>
                         <Link className="ButtonStyle" to="#">Change Password</Link>
-                        <Link className="ButtonStyle" to="#">Stream Instructions</Link>
                     </div>
 
                 </div>
@@ -41,3 +41,4 @@ export default class extends React.Component{
         )
     }
 }
+

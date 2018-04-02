@@ -1,7 +1,7 @@
     // Test Keys to use on Development
 // ===================================================
 const keyPublishable = 'pk_test_IFYDACqD4HYsLjn9eZcB4x1B' // Using my pub.Key Here.
-const keySecret = 'sk_test_' // SSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+const keySecret = 'sk_test_uzgyHUbwXma' // SSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
 
 
     // LOADING DEPENDENCIES
@@ -117,9 +117,10 @@ app.post("/charge", (req, res) => {
 
 
 
-    // SERVER LISTENER
+    // SERVER LISTENER  --  YdkxhNFXE6WNJ
 // ===================================================
 app.listen(5000, (err) => {
     if(err) { throw err }
     console.log(" \n UP & RUNNING...")
 })
+
