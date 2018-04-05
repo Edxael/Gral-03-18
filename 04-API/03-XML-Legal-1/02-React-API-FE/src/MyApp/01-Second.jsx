@@ -137,7 +137,7 @@ export default class extends React.Component{
                 <br/>
 
                 <div className="secWrap">
-                    <h4>DELETE SINGER BY ID</h4>
+                    <h4>DELETE Record BY ID</h4>
                     <input type="text" value={this.state.deleteid} onChange={ (e) => { this.setState({ deleteid: e.target.value }) } }/>
                     <br/>
                     <button onClick={ delete1 }>DELETE</button>
