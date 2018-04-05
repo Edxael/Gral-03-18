@@ -136,9 +136,11 @@ app.post("/charge", (req, res) => {
 
 
 
-
+    // STRIPE DOCUMENTATION ON SUBSCRIPTIONS: https://stripe.com/docs/billing/quickstart
 
 //------[ Subcriptions Charge card  ]--------------------------------------------------------------------------------
+
+
 
         // ********* Creating Plans  *************
 const plan1 = stripe.plans.create({
@@ -154,7 +156,7 @@ const plan1 = stripe.plans.create({
     currency: 'usd',
     interval: 'month',
     nickname: 'Silver Monthly',
-    amount: 10000,
+    amount: 20000,
   })
 
   const plan3 = stripe.plans.create({
@@ -162,7 +164,7 @@ const plan1 = stripe.plans.create({
     currency: 'usd',
     interval: 'month',
     nickname: 'Gold Monthly',
-    amount: 10000,
+    amount: 30000,
   })
         // ************************************
 
@@ -175,10 +177,45 @@ app.post("/subs", (req, res) => {
     // console.log(plan1)
     // const tokenID = req.body.tokenId
     // console.log(tokenID)
+    console.log("For customer: ", req.body.customer.name)
     console.log("The Email is: ", req.body.customer.email)
-    console.log("=======================================")
+    console.log("The Package is: ", req.body.pname)
+    console.log("The P Price is: ", req.body.pprice)
+    console.log("Using Strip Token: ", req.body.tokenId)
+    console.log("======================================= \n ")
 
-    
+    // console.log("Product with Id:  ", pro1.id)
+
+    console.log("======================================= \n ") 
+
+    // ********* Creating The constructor of the product  *************  
+    const product = stripe.products.create({
+        name: 'Subcription Product',
+        type: 'service',
+    })
+
+    // console.log("The product is: ", product)
+    product.then((pro1) => { return pro1.id } )            // Creating Product
+           .then((myid) => { return stripe.plans.create({  // Creating Plan
+                product: myid,
+                currency: 'usd',
+                interval: 'month',
+                nickname: req.body.pname,
+                amount: req.body.pprice,
+          }) } )
+          .then((plan) => { stripe.subscriptions.create({
+                            customer: 'cus_4fdAW5ftNQow1a',
+                            items: [{plan: 'plan_CBXbz9i7AIOTzr'}],
+          }) })
+
+    console.log("======================================= \n ")
+
+    // console.log( "The plan id: ", plan.id )
+
+    // console.log("The plan is: ", planU)
+
+
+    console.log("======================================= \n ")
 
             // ---------------------------------------------------------
             // //  1 time Charge the user's card:  

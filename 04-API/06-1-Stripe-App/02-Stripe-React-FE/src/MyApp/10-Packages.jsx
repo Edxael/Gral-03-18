@@ -18,7 +18,30 @@ export default class extends React.Component{
     onToken = (token) => {
         console.clear()
         console.log("Token is: ", token)
-        axios.post('http://localhost:5000/subs/', { tokenId: token.id, customer: UCR.get('Ucre'), package: this.state.package } )
+
+        let packageName = ''
+        let packagePrice = 0
+
+        if(this.state.package === 1){
+            packageName = "Bronze"
+            packagePrice = 10000
+        }
+
+        if(this.state.package === 2){
+            packageName = "Silver"
+            packagePrice = 20000
+        }
+
+        if(this.state.package === 3){
+            packageName = "Gold"
+            packagePrice = 30000
+        }
+
+        console.log("PackageName: ", packageName)
+        console.log("PackagePrice: ", packagePrice)
+
+
+        axios.post('http://localhost:5000/subs/', { tokenId: token.id, customer: UCR.get('Ucre'), pname: packageName, pprice: packagePrice } )
                 .then(res => {
                     console.log(res);
                     console.log(res.data)
