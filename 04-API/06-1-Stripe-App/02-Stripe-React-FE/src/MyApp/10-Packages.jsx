@@ -18,7 +18,7 @@ export default class extends React.Component{
     onToken = (token) => {
         console.clear()
         console.log("Token is: ", token)
-        axios.post('http://localhost:5000/charge/', { tokenId: token.id, customer: UCR.get('Ucre'), package: this.state.package } )
+        axios.post('http://localhost:5000/subs/', { tokenId: token.id, customer: UCR.get('Ucre'), package: this.state.package } )
                 .then(res => {
                     console.log(res);
                     console.log(res.data)
@@ -45,6 +45,7 @@ export default class extends React.Component{
 
 
 
+
     render(){
         console.clear()
         let userInfo = UCR.get('Ucre')
@@ -56,7 +57,7 @@ export default class extends React.Component{
 
                 <Menu2/>
 
-                <h1>Update your Package.</h1>
+                <h1>Update your Package here.</h1>
 
                 <div className="table-cont">
 

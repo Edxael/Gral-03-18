@@ -43,20 +43,39 @@ app.use('/', router)
 
 
 //------[ To Create New User ]--------------------------------------------------------------------------------
-router.route('/customers').post( (req, res) => {  // Create a new singer and save it on the db.
-    const oneCustomer = new CustomerTemp()      // create a new instance of the Singer model
-    oneCustomer.name = req.body.xinfo.name
-    oneCustomer.email = req.body.xinfo.email
-    oneCustomer.password = req.body.xinfo.password
-    oneCustomer.acctype = "customer"
-    oneCustomer.package = "none"
+router.route('/customers').post( (req, res) => {  // Create a new singer record and save it on the db.
     
-    oneCustomer.save( (err) => {   // save the customer and check for errors
-        if (err) { res.send(err) }
-        console.log("Succesful creation of account for: ", oneCustomer.name , ". \n " )
-        res.json({ message: 'Customer Record Created: ', cdata: oneCustomer})
+    const customer1 = stripe.customers.create({  // Creating a STRIPE customer....
+        email: req.body.xinfo.email
     })
+
+    customer1.then((data) => {                      // When the promise of the Stripe customer is resolve.
+        const oneCustomer = new CustomerTemp()      // create a new instance of the Singer model
+        oneCustomer.name = req.body.xinfo.name
+        oneCustomer.email = req.body.xinfo.email
+        oneCustomer.password = req.body.xinfo.password
+        oneCustomer.acctype = "customer"
+        oneCustomer.package = "none"
+        oneCustomer.stripeid = data.id
+        // console.log("Record to send to DataBase:", oneCustomer)
+
+        oneCustomer.save( (err) => {   // save the customer and check for errors
+            if (err) { res.send(err) }
+            console.log("Succesful creation of account for: ", oneCustomer.name , ". \n " )
+            res.json({ message: 'Customer Record Created: ', cdata: oneCustomer})
+        })
+
+    })  
+    
 }) //---------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 
 
 //------[ To log-in by Email ]--------------------------------------------------------------------------------
@@ -67,6 +86,10 @@ router.route('/customers/:email').get( (req, res) => {
         res.send( customerRecord )   
     })
 }) //---------------------------------------------------------------------------------------------------------
+
+
+
+
 
 
 //------[ To Charge card  ]--------------------------------------------------------------------------------
@@ -110,6 +133,11 @@ app.post("/charge", (req, res) => {
 
 
 
+
+
+
+
+
 //------[ Subcriptions Charge card  ]--------------------------------------------------------------------------------
 
         // ********* Creating Plans  *************
@@ -150,18 +178,6 @@ app.post("/subs", (req, res) => {
     console.log("The Email is: ", req.body.customer.email)
     console.log("=======================================")
 
-        // ---------------------------------------------------------
-        // //  Creating a customer.. 
-    const customer1 = stripe.customers.create({
-        email: req.body.customer.email
-      })
-
-    customer1.then((data) => { 
-        console.log("The promise: ", data) 
-
-        
-    
-    })
     
 
             // ---------------------------------------------------------

@@ -6,8 +6,10 @@ let SingerSchema   = new Schema({
     email: String,
     password: String,
     acctype: String,
-    package: String
+    package: String,
+    stripeid: String
 });
 
 module.exports = mongoose.model('customers', SingerSchema)
+
 

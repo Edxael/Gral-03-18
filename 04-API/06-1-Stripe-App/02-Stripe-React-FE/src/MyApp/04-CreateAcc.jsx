@@ -3,19 +3,23 @@ import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 import * as UCR from './97-LS'
 import Menu1 from './Menus/Menu1'  //<Menu1/>
+import LoadImg from './img/loading.gif'
 
 
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 export default class extends React.Component{
 
-    state = { name: '', email: '', password: '', dashboard: false }
+    state = { name: '', email: '', password: '', dashboard: false, loading: false }
 
     render(){
         console.clear()
 
+
         const CreateUser = (event) => {
             event.preventDefault()
+
+            this.setState({ loading: true })  // to load waiting image
 
             let userObj = {
                 name: this.state.name,
@@ -27,14 +31,11 @@ export default class extends React.Component{
                 .then( (response) => { 
                     console.log(" \n Response from the Server: ", response) 
                     UCR.add('Ucre', response.data.cdata)
+                    this.setState({ name: '', email: '', password: '', dashboard: true })
                 })
                 .catch( (error) => { console.log("Error from Server: ", error) })
 
-            
-
-            this.setState({ name: '', email: '', password: '', dashboard: true })
         }
-
 
 
         return(
@@ -51,6 +52,7 @@ export default class extends React.Component{
 
                     <input type="submit" value="Create Account"/>
                 </form>
+                { this.state.loading ? <img src={LoadImg} alt="La Pic"/> : <div>...</div> }
                 { this.state.dashboard ? <Redirect push to="/6" /> : <div>...</div> }
             </div>
         )

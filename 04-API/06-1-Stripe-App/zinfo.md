@@ -1,5 +1,13 @@
 # Information & Links
 
+===========================================================================
+## Things that need to be done
+- when executing a subscription the record to charge needs to be send to Stripe. 
+- When Executing a subscriptin the package value needs to be update on DataBase.. 
+
+
+
+
 
 ### Tutorial 2 parts for ....
 https://www.youtube.com/watch?v=lGpaMAK9aGI
