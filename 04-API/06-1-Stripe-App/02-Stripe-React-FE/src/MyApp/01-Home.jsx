@@ -8,10 +8,11 @@ export default class extends React.Component{
     render(){
         console.clear()
         let logTes = UCR.get('Ucre')
+        console.log(logTes)
         return(
             <div>
-
-                { logTes.acctype ? <Menu2/> : <Menu1/> }
+                {/* <Menu1/> */}
+                { logTes.name ? <Menu2/> : <Menu1/> }
 
                 <h1>This Week movies</h1>
 
@@ -40,3 +41,5 @@ class Movie extends React.Component{
         )
     }
 }
+
+

@@ -11,7 +11,7 @@ export default class extends React.Component{
         return(
             <div>
 
-                { logTes.acctype ? <Menu2/> : <Menu1/> }
+                { logTes.name ? <Menu2/> : <Menu1/> }
 
                 <h1>About Stream - Flix</h1>
 
