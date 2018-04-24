@@ -14,6 +14,7 @@ const mongoUri = process.env.MONGO_URI
 if(!mongoUri)
   throw Error('Please set a MONGO_URI environment variable')
 
+// --------------------------------------------------------------[Plug-Ins]
 const defaultPlugins = async server => {
   
   const plugins = [
@@ -67,6 +68,9 @@ const defaultPlugins = async server => {
   
   await server.register(plugins)
 }
+// ----------------------------------------------------------------
+
+
 
 const customPlugins = async server => {
   const plugins = [
@@ -77,6 +81,9 @@ const customPlugins = async server => {
   await server.register(plugins)
 }
 
+
+
+// --------------------------------------------------------------[Exporting Function]
 export default async () => {
 
   const options = {
@@ -110,5 +117,5 @@ export default async () => {
   
   return server
 }
-
+// ----------------------------------------------------------------
 
