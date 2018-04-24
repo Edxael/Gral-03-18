@@ -19,26 +19,6 @@ export default class extends React.Component{
 
     render(){
 
-        // const executePayment = () => {
-        //     console.log("Executing Payment...")
-        //     console.log("Package Value: ", this.state.package)
-        //     console.log(" ")
-        //     this.setState({ pay: true })
-        // }
-
-        // const stripePayment = () => {
-        //     console.log(" \n Executing Payment.. \n ")
-           
-        //     return(
-        //         <div>
-
-        //             <h3>Payment...</h3>
-                    
-
-                    
-        //         </div>
-        //     )
-        // }
 
         return(
             <div>
@@ -110,8 +90,7 @@ export default class extends React.Component{
 
                     <br/>
                     
-                    {/* { this.state.pay ? React.createElement(stripePayment) : <button onClick={ executePayment } >PAYMENT</button> } */}
-                    {/* { this.state.redirect ? <Redirect push to="/3" /> : <div>...</div> } */}
+     
 
                 </div>
             </div>
